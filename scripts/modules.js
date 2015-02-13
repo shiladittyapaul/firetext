@@ -15,6 +15,8 @@ if (!app) {
 		if (!url) {
 			callback('bad-params');
 		}
+		callback(null, url);
+		return;
 	
 		// Get module
 		var request = new XMLHttpRequest();
@@ -49,7 +51,7 @@ if (!app) {
 											text = text.replace(/\[ORIGIN_OF_MAIN_DOCUMENT\]/g, window.location.origin ? window.location.origin : window.location.protocol + "//" + window.location.host);
 											inline.type = type;
 											if(name === "SCRIPT") {
-												inline.src = "data:text/javascript;base64," + btoa(text + '\n//# sourceURL=' + url);
+												inline.textContent = text;
 											} else {
 												inline.href = "data:text/css;base64," + btoa(text + '\n/*# sourceURL=' + url + '*/');
 											}

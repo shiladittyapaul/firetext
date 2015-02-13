@@ -52,7 +52,7 @@ var mainClosure = function() {
 			
 			// Content scripts
 			[].forEach.call(content_scripts, function(content_script) {
-				window.eval(atob(content_script.src.split(',')[1]));
+				window.eval(content_script.textContent);
 			});
 			
 			delete window.mainOrigin;
